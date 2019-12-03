@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="aoc2019" target="1.5" />
+      <module name="aoc2019" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
