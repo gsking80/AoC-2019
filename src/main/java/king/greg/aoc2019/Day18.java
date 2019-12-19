@@ -4,17 +4,7 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Day18 {
@@ -68,7 +58,8 @@ public class Day18 {
 		Set<Node> visited = new HashSet<Node>();
 		Map<Node, Integer> steps = new HashMap<Node, Integer>();
 
-		Queue<Node> priorityQueue = initQueue();
+//		Queue<Node> priorityQueue = initQueue();
+		Deque<Node> priorityQueue = new ArrayDeque<>();
 
 		steps.put(start, 0);
 		priorityQueue.add(start);

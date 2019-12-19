@@ -47,7 +47,7 @@ public class Day18Test {
 	public void testSolution1() throws FileNotFoundException {
         final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/input.txt").getPath());
         final Day18 day18 = new Day18(fileReader);
-        Assertions.assertThat(day18.fewestSteps()).isEqualTo(365768);
+        Assertions.assertThat(day18.fewestSteps()).isEqualTo(6098);
 	}
 
 }
