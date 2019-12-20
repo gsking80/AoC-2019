@@ -12,10 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
-
-import king.greg.aoc2019.Day18.Node;
 
 public class Day20 {
 
