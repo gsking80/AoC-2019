@@ -21,7 +21,7 @@ public class Day21 {
     int x = 0;
     int y = 0;
 
-    public Day21(FileReader fileReader) {
+    public Day21(final int programCount, FileReader fileReader) {
         try {
             final BufferedReader buf = new BufferedReader(fileReader);
 
@@ -30,13 +30,15 @@ public class Day21 {
                 if (null == lineJustFetched) {
                     break;
                 } else {
-                    for (int i = 0; i < 1; i++) {
+                    for (int i = 0; i < programCount; i++) {
                         String[] codes = lineJustFetched.split(",");
                         final Map<Long, Long> program = new HashMap<>();
                         for (long j = 0; j < codes.length; j++) {
                             program.put(j, Long.valueOf(codes[(int) j]));
                         }
                         programs.add(program);
+                        inputs.add(new ArrayList<>());
+                        outputs.add(new ArrayList<>());
                     }
                 }
             }
@@ -50,10 +52,7 @@ public class Day21 {
 
     public void execute(final List<Long> input) {
         for (int i = 0; i < 1; i++) {
-            final List<Long> inputI = new ArrayList<>();
-            inputI.addAll(input);
-            inputs.add(inputI);
-            outputs.add(new ArrayList<>());
+            inputs.get(0).addAll(input);
         }
 
         while (programs.get(0).getOrDefault(currentPositions[0], 0L) != 99) {
@@ -140,7 +139,12 @@ public class Day21 {
     }
 
     private void processOutput(final int program) {
-        //do nothing today
+        int output = outputs.get(program).remove(0).intValue();
+        if (output > 127) { // this is our final answer
+            outputs.get(program).add((long) output);
+            return;
+        }
+        System.out.print((char) output);
     }
 
     private Long registerOrValue(final int program, final int mode, final long register) {
@@ -175,6 +179,18 @@ public class Day21 {
     }
 
     public long getFinalOutput(final int programNumber) {
+        if (outputs.get(programNumber).size() == 0) {
+            throw new RuntimeException("no output");
+        }
         return outputs.get(programNumber).remove(0);
+    }
+
+    public void addInput(final int programNumber, final List<String> input) {
+        for (final String line: input) {
+            for (final char character: line.toCharArray()) {
+                inputs.get(programNumber).add((long)character);
+            }
+            inputs.get(programNumber).add(10L);
+        }
     }
 }
