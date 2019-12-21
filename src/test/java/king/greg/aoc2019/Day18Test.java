@@ -49,12 +49,40 @@ public class Day18Test {
         final Day18 day18 = new Day18(fileReader);
         Assertions.assertThat(day18.fewestSteps()).isEqualTo(6098);
 	}
-	
+
+    @Test
+    public void test2a() throws FileNotFoundException {
+        final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/Test2a.txt").getPath());
+        final Day18 day18 = new Day18(fileReader);
+        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(8);
+    }
+
+    @Test
+    public void test2b() throws FileNotFoundException {
+        final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/Test2b.txt").getPath());
+        final Day18 day18 = new Day18(fileReader);
+        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(32);
+    }
+
+    @Test
+    public void test2c() throws FileNotFoundException {
+        final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/Test2c.txt").getPath());
+        final Day18 day18 = new Day18(fileReader);
+        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(72);
+    }
+
+    @Test
+    public void test2d() throws FileNotFoundException {
+        final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/Test2d.txt").getPath());
+        final Day18 day18 = new Day18(fileReader);
+        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(8);
+    }
+
 	@Test
 	public void testSolution2() throws FileNotFoundException {
         final FileReader fileReader = new FileReader(getClass().getClassLoader().getResource("Day18/input.txt").getPath());
         final Day18 day18 = new Day18(fileReader);
-        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(6098);
+        Assertions.assertThat(day18.fewestSteps(true)).isEqualTo(1698);
 	}
 
 }
