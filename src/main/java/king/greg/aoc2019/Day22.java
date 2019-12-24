@@ -54,6 +54,10 @@ public class Day22 {
 			processMove(shuffle);
 		}
 	}
+	
+	public int positionOfCard(final int cardNumber) {
+		return new ArrayList<>(deck).indexOf(cardNumber);
+	}
 
 	private void processMove(final String move) {
 		final String[] moveParts = move.split(" ");
@@ -95,37 +99,42 @@ public class Day22 {
 		}
 	}
 
-	public int positionOfCard(final int cardNumber) {
-		return new ArrayList<Integer>(deck).indexOf(cardNumber);
-	}
-
-	public long simulateGiantShuffle(final long deckSize, final long numberOfShuffles, final long position) {
-		this.deckSize = deckSize;
-		long movingPosition = position;
+	public BigInteger seekPosition(BigInteger deckSize, BigInteger timesShuffled, int position) {
+		BigInteger[] calc = new BigInteger[] { num(1), num(0) };
 		Collections.reverse(shuffles);
-
-		for (long shuffleNumber = numberOfShuffles; shuffleNumber > 0; shuffleNumber--) {
-			for (final String shuffle : shuffles) {
-				movingPosition = reverseProcess(shuffle, movingPosition);
-			}
-
+		for (String shuffle : (shuffles)) {
+			reverseProcess(calc, shuffle, deckSize);
+			for (int i = 0; i < calc.length; i++)
+				calc[i] = calc[i].mod(deckSize);
 		}
-
-		return movingPosition;
+		BigInteger pow = calc[0].modPow(timesShuffled, deckSize);
+		return pow.multiply(num(position))
+				.add(calc[1].multiply(pow.add(deckSize).subtract(num(1)))
+						.multiply(calc[0].subtract(num(1)).modPow(deckSize.subtract(num(2)), deckSize)))
+				.mod(deckSize);
 	}
 
-	private long reverseProcess(final String move, final long movingPosition) {
+	private BigInteger num(long n) {
+		return new BigInteger(Long.toString(n));
+	}
+
+	private void reverseProcess(BigInteger[] input, final String move, final BigInteger deckSize) {
 		final String[] moveParts = move.split(" ");
 		switch (moveParts[0]) {
 		case "cut":
 			final int number = Integer.valueOf(moveParts[1]);
-				return (movingPosition + number + deckSize) % deckSize;
+			input[1] = input[1].add(num(number));
+			break;
 		case "deal":
 			if (moveParts[1].equals("with")) {
 				final int increment = Integer.valueOf(moveParts[3]);
-/// YAY HARD MATH --- need to invert % here
+				BigInteger p = num(increment).modPow(deckSize.subtract(num(2)), deckSize);
+				for (int i = 0; i < input.length; i++) {
+					input[i] = input[i].multiply(p);
+				}
 			} else if (moveParts[1].equals("into")) {
-				return (deckSize -1 ) - movingPosition;
+				input[0] = input[0].multiply(num(-1));
+				input[1] = input[1].add(num(1)).multiply(num(-1));
 			} else {
 				throw new RuntimeException("Don't know move: " + move);
 			}
@@ -133,9 +142,6 @@ public class Day22 {
 		default:
 			throw new RuntimeException("Don't know move: " + move);
 		}
-		return -1;
 	}
-	
-
 
 }
