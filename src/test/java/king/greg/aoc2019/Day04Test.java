@@ -1,8 +1,6 @@
 package king.greg.aoc2019;
 
-
 import java.io.FileNotFoundException;
-
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

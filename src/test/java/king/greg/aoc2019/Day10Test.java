@@ -3,7 +3,6 @@ package king.greg.aoc2019;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

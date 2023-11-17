@@ -3,7 +3,6 @@ package king.greg.aoc2019;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.math.BigInteger;
-
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 

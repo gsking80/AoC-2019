@@ -1,9 +1,8 @@
 package king.greg.aoc2019;
 
-import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import org.junit.Test;
 
 public class Day23Test {
 

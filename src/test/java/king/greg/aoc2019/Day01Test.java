@@ -1,16 +1,13 @@
 package king.greg.aoc2019;
 
-import org.assertj.core.api.Assertions;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
-
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 public class Day01Test {
